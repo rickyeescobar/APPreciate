@@ -23,8 +23,23 @@
     </head>
 
     <body>
+        {% if get_flashedmessages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                {{ get_flashedmessages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer>
+            Made by Ricky Escobar
+        </footer>
 
 
     </body>
-    
+
 </html>
