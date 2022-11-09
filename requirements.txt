@@ -1,2 +1,6 @@
+os
 Flask
 Flask-Session
+Flask_sqlalchemy
+Werkzeug.security
+
