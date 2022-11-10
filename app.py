@@ -34,6 +34,16 @@ def hello_world():
         
         sid = SentimentIntensityAnalyzer()
         analyzed = sid.polarity_scores(phrase)
+
+        if analyzed["compound"] > 0:
+            phrase = ":)"
+        elif analyzed["compound"] == 0:
+            phrase = ":|"
+        else:
+            phrase = ":("
+
+
+
        
       
 
