@@ -9,7 +9,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 views = Blueprint("views", __name__)
 
 # adjust this variable between -1 and +1 to change allowable sentiment
-SENTIMENT_MIN = 0
+SENTIMENT_MIN = .4
 
 def test_sentiment(phrase):
     error = None
@@ -53,8 +53,8 @@ def create():
             error = 'Title is required'
 
         # insert sentiment logic
-        test_sentiment(title)
-        test_sentiment(body)
+        error = test_sentiment(title)
+        error = test_sentiment(body)
 
         if error is not None:
             flash(error)
@@ -128,8 +128,8 @@ def update(id):
             error = 'Title is required.'
 
          # insert sentiment logic
-        test_sentiment(title)
-        test_sentiment(body)
+        error = test_sentiment(title)
+        error = test_sentiment(body)
 
         if error is not None:
             flash(error)
