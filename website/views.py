@@ -8,7 +8,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 views = Blueprint("views", __name__)
 
-
+# adjust this variable between -1 and +1 to change allowable sentiment
 SENTIMENT_MIN = 0
 
 def test_sentiment(phrase):
@@ -53,16 +53,8 @@ def create():
             error = 'Title is required'
 
         # insert sentiment logic
-        sid = SentimentIntensityAnalyzer()
-
-        analyzed_title = sid.polarity_scores(title)
-        analyzed_body = sid.polarity_scores(body)
-
-        if analyzed_title["compound"] <= 0:
-            error = 'Title Input must be something kind!'
-
-        if analyzed_body["compound"] <= 0:
-            error = 'Body Input must be something kind!'
+        test_sentiment(title)
+        test_sentiment(body)
 
         if error is not None:
             flash(error)
@@ -119,11 +111,6 @@ def get_post(id, check_author=True):
         abort(403)
 
     return post
-
-
-
-    
-
 
 
 # update post
