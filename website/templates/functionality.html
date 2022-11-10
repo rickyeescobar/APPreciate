@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Functionality
+{% endblock %}
+
+{% block main %}
+
+<h1 class="display-3">Say Something Nice Today</h1>
+
+<form  method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="phrase" placeholder="type a phrase" type="text">
+        
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+</form >
+
+
+<p> {{ analyzed }}</p>
+
+<h2>{{ phrase }}</h2>
+
+
+{% endblock %}

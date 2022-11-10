@@ -16,7 +16,7 @@
         <!-- https://favicon.io/emoji-favicons/clapping-hands/ -->
         
         <link href="/static/favicon.ico" rel="icon"> 
-        <link href="/static/styles.scss" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 
         <title>APPreciate: {% block title %}{% endblock %}</title>
 
@@ -35,7 +35,7 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" href="{{ url_for('views.functionality') }}">Functionality</a>
                     </li>
 
                     {% if g.user %}
@@ -76,8 +76,6 @@
         <footer>
             Made by Ricky Escobar
         </footer>
-
-
     </body>
 
 </html>

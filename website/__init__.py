@@ -22,8 +22,6 @@ def create_app(test_config=None):
         # load the test config if passed in
         app.config.from_mapping(test_config)
 
-
-
     # ensure the instance folder exists
     try:
         os.makedirs(app.instance_path)
@@ -32,7 +30,8 @@ def create_app(test_config=None):
 
 
     from .views import views
-    app.register_blueprint(views, url_prefix="/")
+    app.register_blueprint(views)
+    app.add_url_rule('/',endpoint='index')
 
 
     from .auth import auth 
