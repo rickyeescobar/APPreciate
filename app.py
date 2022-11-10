@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
 from textblob import TextBlob
 from textblob.sentiments import NaiveBayesAnalyzer
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
 # configure app
 app = Flask(__name__)
@@ -30,16 +31,13 @@ def hello_world():
     if request.method == "POST":
         
         phrase = request.form.get("phrase")
-        blob = TextBlob(phrase, analyzer=NaiveBayesAnalyzer())
+        
+        sid = SentimentIntensityAnalyzer()
+        analyzed = sid.polarity_scores(phrase)
+       
+      
 
-        analyzed = blob.sentiment
-
-        if analyzed["classification"] == 'pos':
-            return render_template("index.html", analyzed=analyzed)
-
-        else:
-            analyzed = "APPreciate only allows positive comments"
-            return render_template("index.html", analyzed=analyzed)
+        return render_template("index.html", analyzed=analyzed, phrase=phrase)
 
     else:
         return render_template("index.html")
