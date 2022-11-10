@@ -37,11 +37,36 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
+
+                    {% if g.user %}
+                    <li class="nav-item">
+                        <a class="nav-link">{{ g.user['username'] }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.sign_up') }}">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a>
+                    </li>
+
+                    {% endif %}
         
                     </ul>
                 </div>
                 </div>
             </nav>
+
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+
+        {% for message in get_flashed_messages() %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
             
         
         <main>
