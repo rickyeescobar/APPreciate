@@ -1,5 +1,7 @@
 import os
 from flask import Flask
+from flask_session import Session
+
 
 
 def create_app(test_config=None):
@@ -27,18 +29,26 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+   
+    from .auth import auth 
+    app.register_blueprint(auth)
 
-
+    from .community import community
+    app.register_blueprint(community)
+    
     from .views import views
     app.register_blueprint(views)
     app.add_url_rule('/',endpoint='index')
 
 
-    from .auth import auth 
-    app.register_blueprint(auth)
+   
+
 
     from . import db
     db.init_app(app)
+
+    # could cause problem
+    Session().init_app(app)
 
 
     

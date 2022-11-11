@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS community;
+DROP TABLE IF EXISTS community_user;
+
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -11,7 +14,21 @@ CREATE TABLE post (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   author_id INTEGER NOT NULL,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title TEXT NOT NULL,
   body TEXT NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE community (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT  NOT NULL UNIQUE,
+  owner_id INTEGER NOT NULL,
+  FOREIGN KEY (owner_id) REFERENCES user (id)
+);
+
+CREATE TABLE community_user (
+  user_id INTEGER NOT NULL,
+  community_name TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id),
+  FOREIGN KEY (community_name) REFERENCES community (name)
+
 );

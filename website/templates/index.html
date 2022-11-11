@@ -4,25 +4,21 @@
 {% block header %}
   <h1>{% block title %}Index{% endblock %}</h1>
   {% if g.user %}
-    <a class="action" href="{{ url_for('views.create') }}">New</a>
+    <a class="btn btn-outline-primary btn-sm" href="{{ url_for('views.create') }}">New</a>
   {% endif %}
 {% endblock %}
 {% block main %}
 
-
   {% for post in posts %}
-    <article class="post">
-      <header>
-        <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
-        </div>
+    <blockquote class="blockquote">
+      <h4>{{ post['body'] }}</h4>
+    </blockquote>
+          <figcaption class="blockquote-footer">
+            by <cite title="Source Title">{{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</cite>
+          </figcaption>
         {% if g.user['id'] == post['author_id'] %}
-          <a class="action" href="{{ url_for('views.update', id=post['id']) }}">Edit</a>
+          <a type="button" class="btn btn-outline-primary btn-sm" href="{{ url_for('views.update', id=post['id']) }}">Edit</a>
         {% endif %}
-      </header>
-      <p class="body">{{ post['body'] }}</p>
-    </article>
     {% if not loop.last %}
       <hr>
     {% endif %}

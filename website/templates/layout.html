@@ -32,10 +32,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('views.functionality') }}">Functionality</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('community.my_community') }}">My Community</a>
                     </li>
 
                     {% if g.user %}
@@ -60,9 +63,11 @@
                 </div>
             </nav>
 
-        <header>
+        <p></p>
+        <header class="container">
             {% block header %}{% endblock %}
         </header>
+        <p></p>
 
         {% for message in get_flashed_messages() %}
         <div class="flash">{{ message }}</div>
@@ -70,10 +75,12 @@
             
         
         <main>
+            <div class="container">
             {% block main %}{% endblock %}
+            </div>
         </main>
 
-        <footer>
+        <footer class="container-fluid text-center">
             Made by Ricky Escobar
         </footer>
     </body>
