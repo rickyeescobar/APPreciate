@@ -8,19 +8,24 @@
 
 <h1 class="display-3">Say Something Nice Today</h1>
 
-<form  method="post">
-    <div class="mb-3">
+<form class="row row-cols-lg-auto g-3 align-items-center" method="post">
+    <div class="col-12" id="funcform">
         <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="phrase" placeholder="type a phrase" type="text">
-        
     </div>
+    <div class="col-12">
     <button class="btn btn-primary" type="submit">Submit</button>
-
+    </div>
 </form >
 
+<div class="container">
+<p> NLTK VADER sentiment data: {{ analyzed }}</p>
+<h2 class="display-6">Sentiment: {{ phrase }}</h2>
+</div>
 
-<p> {{ analyzed }}</p>
-
-<h2>{{ phrase }}</h2>
-
+<div class="container">
+    <p>APPreciate is inspired by Dale Carnegie's "How to Win Friends and Influence People.
+        
+    </p>
+</div>
 
 {% endblock %}
