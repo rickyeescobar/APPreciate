@@ -33,7 +33,7 @@ def after_request(response):
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, body, created, author_id, username'
+        'SELECT p.id, body, created, author_id, community_name, username'
         ' FROM POST p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
@@ -46,6 +46,7 @@ def index():
 def create():
     if request.method == 'POST':
         body = request.form['body']
+        community = request.form['communitylist']
         error = None
 
         if not body:
@@ -60,14 +61,21 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO post (body, author_id)'
-                'VALUES ( ?, ?)',
-                (body, g.user['id'])
+                'INSERT INTO post (body, author_id, community_name)'
+                'VALUES ( ?, ?, ?)',
+                (body, g.user['id'], community)
             )
             db.commit()
             return redirect(url_for('views.index'))
+    
+    db = get_db()
+    communities = db.execute(
+        'SELECT name FROM community c '
+        'JOIN community_user ON c.name = community_user.community_name '
+        'WHERE community_user.user_id = ?',(g.user['id'],)
+    ).fetchall()
 
-    return render_template('views/create.html')
+    return render_template('views/create.html', communities=communities)
 
 
 @views.route('/functionality', methods=('GET', 'POST'))

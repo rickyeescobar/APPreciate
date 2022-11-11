@@ -14,7 +14,7 @@
       <h4>{{ post['body'] }}</h4>
     </blockquote>
           <figcaption class="blockquote-footer">
-            by <cite title="Source Title">{{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</cite>
+            by <cite title="Source Title">{{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }} in {{ post['community_name'] }}</cite>
           </figcaption>
         {% if g.user['id'] == post['author_id'] %}
           <a type="button" class="btn btn-outline-primary btn-sm" href="{{ url_for('views.update', id=post['id']) }}">Edit</a>
