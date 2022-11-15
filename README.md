@@ -4,13 +4,17 @@
 1. app.py
 2. README.md
 3. requirements.txt
+4. setup.py
+5. MANIFEST.in
 4. website
-* index.html
-* layout.html
-5. static
-5.1. favicon.ico
-5.2. styles.css
-6. .gitignore
+* static
+* templates
+* __init__.py
+* auth.py
+* community.py
+* views.py
+* db.py
+* schema.sql
 
 
 #### Video Demo: TODO
