@@ -8,24 +8,52 @@
 
 <h1 class="display-3">Say Something Nice Today</h1>
 
-<form class="row row-cols-lg-auto g-3 align-items-center" method="post">
-    <div class="col-12" id="funcform">
-        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="phrase" placeholder="type a phrase" type="text">
+<form class=" row-cols-lg-auto g-3 align-items-center" method="post">
+    <div class="col-12 input-lg" id="funcform">
+        <input autocomplete="off" autofocus class="form-control mx-auto" name="phrase" placeholder="type a phrase" type="text">
     </div>
+    <br />
     <div class="col-12">
     <button class="btn btn-primary" type="submit">Submit</button>
     </div>
 </form >
-
+<br />
 <div class="container">
-<p> NLTK VADER sentiment data: {{ analyzed }}</p>
-<h2 class="display-6">Sentiment: {{ phrase }}</h2>
+<h3 class="display-6"> NLTK VADER sentiment data: {{ analyzed }}</h3>
+<h3 class="display-6">Sentiment: {{ phrase }}</h3>
 </div>
 
 <div class="container">
-    <p>APPreciate is inspired by Dale Carnegie's "How to Win Friends and Influence People.
-        
+    <h3>What is APPreciate</h3>
+    <p>APPreciate is a web app built on Flask, inspired by Dale Carnegie's "How to Win Friends and Influence People.
+        The goal of the App is to increase workplace and classroom productivity and quality
+        of work by promoting positive reinforcement for users. Users can only post things with 
+        positive sentiment. Users can join "communities" that could be work-place teams, classrooms, companies,
+        schools, or even just groups of friends. Users can see posts that are made in the communities that they
+        are a part of. 
     </p>
+    <h4>Give it a try!</h4>
+    <p>
+        Try the input:
+        <blockquote>
+            Bob did such a great job on his presentation today, I was impressed with the research he did
+        </blockquote> 
+    </p>
+    <p>
+        Now try: 
+        <blockquote>
+            Bob totally flopped on his presentation today. 
+            The slides were terrible and his speaking ability is sub-par
+        </blockquote>
+    </p>
+    <h4>The Problem</h4>
+    <p>APPreciate fixes the problem of toxic social media interations and comparison by biasing for positive
+        "appreciation" posts about people. APPreciate aims to provide positive encouragements and reinforcement
+        to users. Company productivity will increase because people are more likely to do a better job if they 
+        are being praised for their work, and they are eager to recieve praise. 
+    </p>
+   
+
 </div>
 
 {% endblock %}
