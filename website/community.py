@@ -37,19 +37,16 @@ def create_community():
         if community is None:
             error = 'Community name is required.'
 
-    
         if error is None:
             try:
                 db.execute(
                     "INSERT INTO community (name, owner_id) VALUES (?, ?)",
                     (community, g.user['id']))
-
                 db.commit()
 
                 db.execute(
                     "INSERT INTO community_user (community_name, user_id) VALUES (?, ?)",
                     (community, g.user['id']))
-                
                 db.commit()
 
             except db.IntegrityError:
@@ -93,7 +90,6 @@ def join_community():
 
         except db.IntegrityError:
             error = f"There was an error joining {community}."
-
 
         if error == None:
             flash(f"{community} has been successfully added!")

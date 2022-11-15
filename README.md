@@ -27,10 +27,14 @@
 
 ### Required Libraries:
 >- import os
->- from flask import Flask, flash, redirect, render_template, request, session, url_for
+>- from flask import Flask, Blueprint, flash, redirect, render_template, request, session, url_for
 >- from flask_session import Session
->- import NLTK
+>- from nltk.sentiment.vader import SentimentIntensityAnalyzer
 >- from werkzeug.security import check_password_hash, generate_password_hash
+>- import click
+>- import setuptools
+>- from werkzeug.exceptions import abort
+
 
 
 ### Description of functionality:

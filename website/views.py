@@ -1,5 +1,4 @@
-from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
-from flask_session import Session
+from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 
 from werkzeug.exceptions import abort
 from website.auth import login_required
