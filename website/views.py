@@ -46,7 +46,7 @@ def index():
         ' WHERE community_user.user_id = ?) ORDER BY created DESC',(g.user['id'],)
     ).fetchall()
 
-    return render_template('index.html', posts=posts)
+    return render_template('views/index.html', posts=posts)
     
 
 
@@ -103,10 +103,10 @@ def functionality():
         else:
             phrase = ":("
 
-        return render_template("functionality.html", analyzed=analyzed, phrase=phrase)
+        return render_template("views/functionality.html", analyzed=analyzed, phrase=phrase)
 
     else:
-        return render_template("functionality.html")
+        return render_template("views/functionality.html")
 
 
 

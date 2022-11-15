@@ -14,12 +14,14 @@ community = Blueprint("community", __name__)
 def my_community():
     db = get_db()
     communities = db.execute(
-        'SELECT name FROM community c '
+        'SELECT name, owner_id FROM community c '
         'JOIN community_user ON c.name = community_user.community_name '
         'WHERE community_user.user_id = ?',(g.user['id'],)
     ).fetchall()
 
-    return render_template('community/my_community.html', communities=communities)
+    user_id = int(g.user['id'])
+
+    return render_template('community/my_community.html', communities=communities, user_id=user_id)
 
 
 @community.route('/create_community', methods=['GET', 'POST'])
@@ -101,3 +103,43 @@ def join_community():
         return redirect(url_for("community.my_community"))
 
     return render_template('community/join_community.html')
+
+def get_community_user(community_name):
+    community_user = get_db().execute(
+        'SELECT * FROM community_user WHERE community_name = ?', (community_name,)
+    ).fetchone()
+
+    if community_user is None:
+        abort(404, f"Community_user {community_user} doesn't exist.")
+
+    return community_user
+
+def get_community(name):
+    community = get_db().execute(
+        'SELECT * FROM community WHERE name = ?', (name,)
+    ).fetchone()
+
+    if community is None:
+        abort(404, f"Community {community} doesn't exist.")
+
+    return community
+
+@community.route('/<community_name>/leave_community', methods=['POST',])
+@login_required
+def leave_community(community_name):
+    get_community_user(community_name)
+    db = get_db()
+    db.execute('DELETE FROM community_user WHERE community_name = ?', (community_name,))
+    db.commit()
+    return redirect(url_for('community.my_community'))
+
+@community.route('/<community>/delete_community', methods=['POST',])
+@login_required
+def delete_community(community):
+    get_community_user(community)
+    db = get_db()
+    db.execute('DELETE FROM community WHERE name = ?', (community,))
+    db.commit()
+    db.execute('DELETE FROM community_user WHERE community_name = ?', (community,))
+    db.commit()
+    return redirect(url_for('community.my_community'))

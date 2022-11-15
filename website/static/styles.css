@@ -4,6 +4,9 @@ footer {
     padding: 15px;
   }
 
-.funcform {
-  align-items: center;
+.leave_community{
+  padding: 2px;
+}
+.delete_community{
+  padding: 2px;
 }

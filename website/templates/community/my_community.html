@@ -13,7 +13,27 @@
 
 {% for community in communities %}
 <div class="container">
-{{ community['name'] }}
+  
+  {{ community['name'] }}
+
+  <div class="btn-group">
+    <div class="leave_community">
+      <form action="{{ url_for('community.leave_community', community_name=community['name']) }}"  method="post">
+        <input class="btn btn-outline-primary btn-sm" type="submit" value="Leave" onclick="return confirm('Are you sure?');">
+      </form>
+    </div>
+
+
+  {% if community['owner_id'] == user_id %}
+  
+    <div class="delete_community">
+      <form action="{{ url_for('community.delete_community', community=community['name']) }}"  method="post">
+        <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete Group" onclick="return confirm('Are you sure?');">
+      </form>
+    </div>
+  </div>
+  {% endif %}
+
 </div>
 {% if not loop.last %}
 <hr>
