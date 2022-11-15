@@ -7,14 +7,14 @@
 4. setup.py
 5. MANIFEST.in
 4. website
-* static
-* templates
-* __init__.py
-* auth.py
-* community.py
-* views.py
-* db.py
-* schema.sql
+    * static
+    * templates
+    * __init__.py
+    * auth.py
+    * community.py
+    * views.py
+    * db.py
+    * schema.sql
 
 
 #### Video Demo: TODO
