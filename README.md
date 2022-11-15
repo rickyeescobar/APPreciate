@@ -8,8 +8,23 @@
 5. MANIFEST.in
 4. website
     * static
+        * favicon.ico
+        * styles.css
     * templates
-    * __init__.py
+        * auth
+            * login.html
+            * sign_up.html
+        * community
+            * create_community.html
+            * join_community.html
+            * my_community.html
+        * views
+            * create.html
+            * functionality.html
+            * index.html
+            * update.html
+        * layout.html
+    * '__init__.py'
     * auth.py
     * community.py
     * views.py
