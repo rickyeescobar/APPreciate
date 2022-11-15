@@ -142,4 +142,6 @@ def delete_community(community):
     db.commit()
     db.execute('DELETE FROM community_user WHERE community_name = ?', (community,))
     db.commit()
+    db.execute('DELETE FROM post WHERE community_name = ?', (community,))
+    db.commit()
     return redirect(url_for('community.my_community'))
