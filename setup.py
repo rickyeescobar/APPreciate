@@ -7,5 +7,10 @@ setup(
     include_package_data=True,
     install_requires=[
         'flask',
+        'nltk',
+        'sqlite3',
+        'click',
+        'setuptools',
+        'werkzeug',
     ],
 )
