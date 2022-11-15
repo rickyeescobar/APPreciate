@@ -12,4 +12,6 @@ htmlcov/
 dist/
 build/
 *.egg-info/
+
 queries.sql
+nltk_data.py

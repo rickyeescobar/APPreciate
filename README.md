@@ -4,9 +4,9 @@
 1. app.py
 2. README.md
 3. requirements.txt
-4. templates
-4.1. index.html
-4.2. layout.html
+4. website
+* index.html
+* layout.html
 5. static
 5.1. favicon.ico
 5.2. styles.css

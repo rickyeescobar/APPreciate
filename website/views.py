@@ -28,6 +28,8 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+    
+
 @views.route('/', methods=["GET", "POST"])
 @login_required
 def index():
