@@ -5,13 +5,17 @@
 {% endblock %}
 
 {% block main %}
-  <form method="post">
-    <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
-    <input type="submit" value="Save">
-  </form>
-  <hr>
+
+<form id="update_post" method="post">
+  <label for="body">Body</label>
+  <textarea class="form-control" rows="5" name="body" id="body">{{ request.form['body'] or post['body'] }}</textarea>
+</form>
+
+<div class="btn-group" style="padding: 5px;">
+  <input form="update_post" class="btn btn-outline-primary btn-sm" type="submit" value="Save"/>
+
   <form action="{{ url_for('views.delete', id=post['id']) }}" method="post">
-    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+    <input class="btn btn-outline-primary btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure?');"/>
   </form>
+</div>
 {% endblock %}
