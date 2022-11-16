@@ -11,7 +11,7 @@
       
     <label for="community">Choose a Community:</label>
 
-    <select class="form-select " id="community" name="communitylist" form="post-form">
+    <select class="form-select " id="community" name="communitylist" form="post-form" required>
       {% for community in communities %}
       <option value="{{ community['name'] }}">{{ community['name'] }}</option>
       {% endfor %}

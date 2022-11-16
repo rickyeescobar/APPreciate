@@ -9,6 +9,10 @@
 {% endblock %}
 {% block main %}
 
+{% if posts | length == 0 %}
+<h4>{{ "Join a community first to make a post!" }}</h4>
+{% endif %}
+
   {% for post in posts %}
     <blockquote class="blockquote">
       <h4>{{ post['body'] }}</h4>

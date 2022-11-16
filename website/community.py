@@ -78,6 +78,7 @@ def join_community():
 
         if check is None:
             error = "Community does not exist yet."
+            flash(error)
             return redirect(url_for("community.create_community"))
 
         try:
