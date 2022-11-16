@@ -121,5 +121,4 @@ CREATE TABLE community_user (
 
 
 
-# TODO
 # Thanks for reading
