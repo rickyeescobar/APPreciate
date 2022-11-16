@@ -70,8 +70,11 @@
 #### schema.sql
 ######
 DROP TABLE IF EXISTS user;
+
 DROP TABLE IF EXISTS post;
+
 DROP TABLE IF EXISTS community;
+
 DROP TABLE IF EXISTS community_user;
 
 
