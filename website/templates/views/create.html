@@ -7,16 +7,23 @@
 {% block main %}
   <form id="post-form" method="post">
     <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <textarea class="form-control mx-auto" name="body" id="body">{{ request.form['body'] }}</textarea>
+      
+    <label for="community">Choose a Community:</label>
+
+    <select class="form-select " id="community" name="communitylist" form="post-form">
+      {% for community in communities %}
+      <option value="{{ community['name'] }}">{{ community['name'] }}</option>
+      {% endfor %}
+    </select>
+
+    <br />
+
     <input class="btn btn-outline-primary" type="submit" value="Save"/>
+    
   </form>
 
-  <label for="community">Choose a Community:</label>
-<select id="community" name="communitylist" form="post-form">
-  {% for community in communities %}
-  <option value="{{ community['name'] }}">{{ community['name'] }}</option>
-  {% endfor %}
-</select>
+ <br />
 
 
 {% endblock %}
