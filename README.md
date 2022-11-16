@@ -62,10 +62,49 @@
 ###### Sets up app configuration, tests if app is ready to run, registers blueprints, returns app.
 
 #### app.py
-###### Runs code from __init__.py and creates the app instance.
+###### Runs code from __init__.py and creates the Flask app instance.
 
 #### db.py
 ###### Initiates and controls the SQLite database interface. Contains the functions: get_db(), close_db(), init_db('init-db'), init_db_command(), and init_app(app). These functions allow the flask app to interact with the SQLite backend for all basic website functinality. 
+
+#### schema.sql
+######
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS community;
+DROP TABLE IF EXISTS community_user;
+
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE post (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  body TEXT NOT NULL,
+  community_name TEXT NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user (id),
+  FOREIGN KEY (community_name) REFERENCES community (name)
+);
+
+CREATE TABLE community (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT  NOT NULL UNIQUE,
+  owner_id INTEGER NOT NULL,
+  FOREIGN KEY (owner_id) REFERENCES user (id)
+);
+
+CREATE TABLE community_user (
+  user_id INTEGER NOT NULL,
+  community_name TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id),
+  FOREIGN KEY (community_name) REFERENCES community (name)
+
+);
 
 #### auth.py
 ###### Allows for user authentication. Contains the functions: sign-up(), login(), load_logged_in_user(), logout(), and login_required(view). This file manages all of the routes for user authentication functionality such as logging in, signing up, logging out, etc. 
@@ -75,6 +114,7 @@
 
 #### community.py
 ###### Allows users to create, join, delete, or leave communities of other users. Contains the functions my_community(), create_community(), join_community(), get_community_user(community_name), get_community(name), leave_community(community_name), and delete_community(community). This file manages the community functionality for the web app. It allows users to create communities that could be groups of peers, entire companies, schools, classes, or any group of people you want. Communities have an owner (the creator of the group) who is the only one who can delete the group. After joining an existing group, you may leave a group. Any user can create a group or join other groups. Users can join many groups at the same time. On the app's home page, users will see a feed of all posts within their groups. From the my community link in the nav bar, users can access the functionality of this file. 
+
 
 
 
